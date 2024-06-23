@@ -92,7 +92,7 @@ query {
 ### Check Pet Eligibility for Rental
 
 To check if a pet is eligible for rental, use the isPetEligibleForRental query. You need to provide petId as an argument.
-In case the pet is not eligible, it will provide a list of reasons why the 
+In case the pet is not eligible, it will provide a list of reasons why the pet is not eligible
 
 ```graphql
 query {
