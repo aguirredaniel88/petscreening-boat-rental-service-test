@@ -89,7 +89,7 @@ query {
 ```
 
 
-### Check Pet Eligibility for Rental
+#### Check Pet Eligibility for Rental
 
 To check if a pet is eligible for rental, use the isPetEligibleForRental query. You need to provide petId as an argument.
 In case the pet is not eligible, it will provide a list of reasons why the pet is not eligible
@@ -177,7 +177,7 @@ mutation {
 }
 ```
 
-### Create Pet Owner
+#### Create Pet Owner
 To create a pet owner, use the createPetOwner mutation. You need to provide an OwnerInput object with the owner details.
 
 ```graphql
@@ -195,7 +195,7 @@ mutation MyMutation {
 }
 ```
 
-### Change Owner to Pet
+#### Change Owner to Pet
 To change the owner of a pet, use the changeOwnerToPet mutation. You need to provide the `petId` and the `ownerId` or `ownerGovernmentId`.
 
 ```graphql
