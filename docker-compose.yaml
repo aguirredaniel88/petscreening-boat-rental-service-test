@@ -1,0 +1,18 @@
+services:
+  flyway:
+    image: flyway/flyway:10.15-alpine
+    command: -configFiles=/flyway/conf/flyway.config -locations=filesystem:/flyway/sql -connectRetries=60 migrate
+    volumes:
+      - ${PWD}/flyway/sql:/flyway/sql
+      - ${PWD}/flyway/docker-flyway.config:/flyway/conf/flyway.config
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:14.12-alpine3.20
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test12345
+      - POSTGRES_DB=boat-rental

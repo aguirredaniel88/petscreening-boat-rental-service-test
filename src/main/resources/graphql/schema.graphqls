@@ -1,0 +1,81 @@
+enum Species {
+    CAT,
+    DOG
+}
+
+type Owner {
+    id: ID
+    governmentId: String
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
+}
+
+type Pet {
+    id: ID
+    name: String
+    owner: Owner
+    weight: Float
+    breed: String
+    trainingLevel: Int
+    isVaccinated: Boolean
+    species: Species
+}
+
+type PetEligibility {
+    isEligibleForRental: Boolean!
+    reasons: [String]
+}
+
+input OwnerInput {
+    governmentId: String!
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
+}
+
+input PetInput {
+    name: String!
+    weight: Float
+    breed: String
+    trainingLevel: Int
+    vaccinated: Boolean
+    species: Species
+}
+
+input PetInputToUpdate {
+    id: ID!
+    name: String
+    weight: Float
+    breed: String
+    trainingLevel: Int
+    vaccinated: Boolean
+    species: Species
+}
+
+
+input PetWithOwnerInput {
+    pet: PetInput
+    owner: OwnerInput!
+}
+
+input PetWithOwnerIdInput {
+    pet: PetInput!
+    ownerGovernmentId: String!
+}
+
+type Mutation {
+    createPetAndOwner(petWithOwner: PetWithOwnerInput): Pet!
+    createPetAndLinkOwner(petWithOwnerId: PetWithOwnerIdInput): Pet!
+    updatePet(petInput: PetInputToUpdate): Pet!
+    createPetOwner(ownerInput: OwnerInput): Owner!
+    changeOwnerToPet(petId: ID!, ownerId: ID, ownerGovernmentId: String): Pet!
+}
+
+type Query {
+    getEligiblePets(isVaccinated: Boolean, maxWeightInPounds: Float, minimumTrainingLevel: Int,
+        excludedBreed: String): [Pet]!
+    isPetEligibleForRental(petId: ID!): PetEligibility!
+}
